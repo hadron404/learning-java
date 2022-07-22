@@ -1,0 +1,9 @@
+行为参数化
+
+
+
+
+
+[Modern Java - A Guide to Java8 ](https://github.com/winterbe/java8-tutorial)
+
+Java 8 In Action
