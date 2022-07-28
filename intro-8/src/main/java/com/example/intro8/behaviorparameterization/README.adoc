@@ -1,0 +1,10 @@
+
+== Strategy Pattern
+[quote,Modern Java In Action Lambada streams functional and reactive programming]
+http://en.wikipedia.org/wiki/Strategy_pattern[Strategy_pattern] lets you define a family of algorithms, encapsulate each algorithm (called a strategy), and select an algorithm at run time
+
+
+== What's behavior parameterization means?
+
+[quote,Modern Java In Action Lambada streams functional and reactive programming]
+the ability to tell a method to take multiple behaviors (or strategies) as parameters and use them internally to accomplish different behaviors

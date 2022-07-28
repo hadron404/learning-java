@@ -1,25 +1,13 @@
-package com.example.intro8;
+package com.example.intro8.behaviorparameterization;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.intro8.Color.GREEN;
-import static com.example.intro8.Color.RED;
-
-/**
- * Java In Action
- */
-
-record Apple(Color color, int weight) {
-}
-
-enum Color {
-	RED,
-	GREEN,
-}
+import static com.example.intro8.behaviorparameterization.Color.GREEN;
+import static com.example.intro8.behaviorparameterization.Color.RED;
 
 
-public class BehaviorParameterization {
+public class Test {
 	private static final List<Apple> inventory = new ArrayList<>();
 
 	public static void main(String[] args) {
@@ -65,6 +53,7 @@ class SecondAttempt {
 	}
 }
 
+
 /**
  * ThirdAttempt: filtering with every attribute you can think of
  */
@@ -82,22 +71,24 @@ class ThirdAttempt {
 	}
 }
 
-/*
- * Behavior parameterization
- *
+// @formatter:off
+
+/**
+ * Fourth Attempt: filtering by abstract criteria
  */
-interface ApplePredicate {
-	boolean test(Apple apple);
-}
-
-class AppleHeavyWeightPredicate implements ApplePredicate {
-	public boolean test(Apple apple) {
-		return apple.weight() > 150; // 4 Selects only heavy apples
+class FourthAttempt {
+	public static List<Apple> filterApples(List<Apple> inventory, ApplePredicate p) {
+		List<Apple> result = new ArrayList<>();
+		for (Apple apple : inventory) {
+			if (p.test(apple)) { // (1) Predicate p encapsulates the condition to test on an apple.
+				result.add(apple);
+			}
+		}
+		return result;
 	}
 }
 
-class AppleGreenColorPredicate implements ApplePredicate {
-	public boolean test(Apple apple) {
-		return GREEN.equals(apple.color()); // 5 Selects only green apples
-	}
-}
+// @formatter:on
+
+
+
