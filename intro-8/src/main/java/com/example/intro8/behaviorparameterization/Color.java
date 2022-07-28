@@ -1,6 +1,6 @@
 package com.example.intro8.behaviorparameterization;
 
-enum Color {
+public enum Color {
 	RED,
 	GREEN,
 }
