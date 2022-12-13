@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+allprojects {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+}
+subprojects {
+	group = 'com.example'
+	version = '0.0.1-SNAPSHOT'
+
+	apply plugin: 'java'
+	apply plugin: 'idea'
+
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+
+	repositories {
+		mavenCentral()
+		mavenLocal()
+	}
+
+	[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+	dependencies {
+		testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+		testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+	}
+
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
+}
+
+

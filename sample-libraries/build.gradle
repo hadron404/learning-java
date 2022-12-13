@@ -1,0 +1,5 @@
+
+dependencies {
+	implementation 'commons-beanutils:commons-beanutils:1.9.4'
+	implementation 'org.apache.commons:commons-collections4:4.4'
+}

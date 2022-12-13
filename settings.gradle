@@ -1,0 +1,8 @@
+rootProject.name = 'learning-java'
+
+include 'sample-aop'
+include 'feature-sample'
+include 'katas'
+include 'learning-enum'
+include 'sample-libraries'
+
