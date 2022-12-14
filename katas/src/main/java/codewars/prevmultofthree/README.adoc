@@ -1,0 +1,12 @@
+
+== Introductions
+
+https://www.codewars.com/kata/61123a6f2446320021db987d[PrevMultOfThree - CodeWars]
+
+[source,java]
+----
+
+include::../prevmultofthree/PrevMultOfThree.java[]
+
+----
+
