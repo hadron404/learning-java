@@ -1,9 +1,98 @@
-行为参数化
+= Features of Java
 
+:sectnums:
 
+== Java 17 (LTS)
 
+== Java 14
 
+=== Switch Expressions(JEP 361)
 
-[Modern Java - A Guide to Java8 ](https://github.com/winterbe/java8-tutorial)
+=== Text Blocks (JEP 368)
 
-Java 8 In Action
+=== Pattern Matching for instance of(JEP 305)
+
+=== Records(JEP 359)
+
+=== Reference
+* https://www.baeldung.com/java-14-new-features[14-features-baeldung]
+
+== Java 11 (LTS)
+=== APis Improvements
+==== New String Methods
+
+* _isBlank()_
+* _lines()_
+* _strip()_
+* _stripLeading_
+* _stripTrailing()_
+* _repeat()_
+
+==== New File Methods
+* `static`  _readString()_
+* `static`  _writeString()_
+* `static`  _isSameFile()_
+
+==== The Not Predicate Methods
+
+==== Collection to An Array
+
+=== Local-Variable Syntax for Lambda Parameters
+
+=== Running Java File with single command
+
+=== Reference
+* https://www.geeksforgeeks.org/java-11-features-and-comparison/[11-feature-geeksforgeeks]
+* https://www.baeldung.com/java-11-new-features[11-feature-baeldung]
+* https://www.digitalocean.com/community/tutorials/java-11-features[11-feature-DigitalOcean]
+* https://www.interviewbit.com/blog/java-11-features/[11-feature-InterviewBit]
+
+== Java10
+=== Time-Based Release Versioning(JEP 322)
+=== Local-Variable Type Inference(JEP 286)
+=== Experimental Java-Based JIT Compiler(JEP 317)
+=== Root Certificates(JEP 319)
+=== Heap Allocation on Alternative Memory Devices(JEP 316)
+=== Removed javah(JEP313)
+=== Collection API copyOf(Collection) method
+=== Optional API orElseThrow() method
+
+== Java 9
+
+== Java 8 (LTS)
+
+=== Functional Interface
+=== Lambda Expression
+==== Lambda Expression - hello world
+==== Lambda Expression - multiple parameters
+==== Lambda Expression - foreach loop
+==== Lambda Expression - multiple statements
+==== Lambda Expression - create thread
+==== Lambda Expression - comparator
+==== Lambda Expression - filter
+=== Method References
+=== Stream Api
+==== Create Stream
+===== Create Stream - Using List
+==== Use Stream
+===== Stream - Filter
+===== Stream - Map
+===== Stream - Flatmap
+===== Stream - Distinct
+===== Stream - Peek
+==== Collectors Class
+=== New Date/Time Api
+==== LocalDate/LocalDateTime
+=== Optional
+=== Default Method
+==== forEach
+==== StringJoiner Class
+==== Base64
+==== Java 8 Type Interface Improvements
+
+== Reference
+
+* https://github.com/winterbe/java8-tutorial[Modern Java - A Guide to Java8 ]
+* https://www.oreilly.com/library/view/java-8-in/9781617291999/[
+Java 8 in Action: Lambdas, streams, and functional-style programming]
+* https://www.w3schools.blog/java-8-features-with-examples[Java 8 Features With Examples]

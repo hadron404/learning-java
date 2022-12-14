@@ -1,13 +1,13 @@
-package com.example.intro8.behaviorparameterization.attempt;
+package com.example.features.behaviorparameterization.attempt;
 
-import com.example.intro8.behaviorparameterization.Apple;
+import com.example.features.behaviorparameterization.Apple;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.intro8.behaviorparameterization.Color.RED;
+import static com.example.features.behaviorparameterization.Color.RED;
 
 class FifthAttemptTest {
 

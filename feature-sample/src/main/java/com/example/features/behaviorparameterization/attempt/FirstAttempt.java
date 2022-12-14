@@ -1,11 +1,11 @@
-package com.example.intro8.behaviorparameterization.attempt;
+package com.example.features.behaviorparameterization.attempt;
 
-import com.example.intro8.behaviorparameterization.Apple;
+import com.example.features.behaviorparameterization.Apple;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.intro8.behaviorparameterization.Color.GREEN;
+import static com.example.features.behaviorparameterization.Color.GREEN;
 
 /**
  * First attempt: filtering green apples.

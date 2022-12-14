@@ -1,4 +1,4 @@
-package com.example.intro8.behaviorparameterization;
+package com.example.features.behaviorparameterization;
 
 /**
  * Java In Action

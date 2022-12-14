@@ -1,6 +1,6 @@
-package com.example.intro8.behaviorparameterization.attempt;
+package com.example.features.behaviorparameterization.attempt;
 
-import com.example.intro8.behaviorparameterization.Apple;
+import com.example.features.behaviorparameterization.Apple;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

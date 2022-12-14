@@ -1,6 +1,6 @@
-package com.example.intro8.behaviorparameterization.quiz;
+package com.example.features.behaviorparameterization.quiz;
 
-import com.example.intro8.behaviorparameterization.Apple;
+import com.example.features.behaviorparameterization.Apple;
 
 import java.util.List;
 

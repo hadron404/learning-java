@@ -1,4 +1,4 @@
-package com.example.intro8.behaviorparameterization.quiz;
+package com.example.features.behaviorparameterization.quiz;
 
 /*
  * What will the output be when this code is executed: 4, 5, 6, or 42?

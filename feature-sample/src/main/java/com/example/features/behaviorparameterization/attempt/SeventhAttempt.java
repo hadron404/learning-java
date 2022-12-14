@@ -1,4 +1,4 @@
-package com.example.intro8.behaviorparameterization.attempt;
+package com.example.features.behaviorparameterization.attempt;
 
 import java.util.ArrayList;
 import java.util.List;
