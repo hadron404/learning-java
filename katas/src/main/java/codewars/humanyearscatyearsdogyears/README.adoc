@@ -1,0 +1,12 @@
+
+== Introductions
+
+https://www.codewars.com/kata/5a6663e9fd56cb5ab800008b[Cat years,Dog years - CodeWars]
+
+[source,java]
+----
+
+include::../humanyearscatyearsdogyears/Solution.java[]
+
+----
+
