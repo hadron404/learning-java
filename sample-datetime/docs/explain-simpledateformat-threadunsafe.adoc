@@ -21,9 +21,9 @@ include::{docdir}/../src/main/java/org/example/issues/issue0/SimpleDateFormatThr
 
 == Why
 
-在 CalendarBuilder.establish() 方法中先后调用了 cal.clear()与 cal.set()，也就是先清除cal对象中设置的值，再重新设置新的值。由于 Calendar 内部并没有线程安全机制，并且这两个操作也都不是原子性的，所以当多个线程同时操作一个 SimpleDateFormat 时就会引起 cal 的值混乱。类似地， * format() 方法也存在同样的问题*。
+在 CalendarBuilder.establish() 方法中先后调用了 cal.clear() 与 cal.set()，也就是先清除 cal 对象中设置的值，再重新设置新的值。由于 Calendar 内部并没有线程安全机制，并且这两个操作也都不是原子性的，所以当多个线程同时操作一个 SimpleDateFormat 时就会引起 cal 的值混乱。类似地， *format() 方法也存在同样的问题*。
 
-因此， SimpleDateFormat类不是线程安全的根本原因是：*DateFormat 类中的 Calendar 对象被多线程共享，而 Calendar 对象本身不支持线程安全* 。
+因此， SimpleDateFormat 类不是线程安全的根本原因是：*DateFormat 类中的 Calendar 对象被多线程共享，而 Calendar 对象本身不支持线程安全* 。
 
 
 == How should I use SimpleDateFormat in a multithreaded environment?
