@@ -1,0 +1,125 @@
+= Install
+
+仅部署
+
+方式一：单机部署
+方式二：分布式部署 Docker 或 Kubernetes
+
+
+部署+可视化
+
+方式一：基于 Docker + Grafana + InfluxDB 构建 JMeter 可视化性能测试监控平台
+方式二：基于 Kubernetes 集群以及 JMeter 主从架构实现分布式压测与监控平台
+
+== 单机部署
+主要用于编写 JMX 测试脚本和本地服务的各种测试需求。
+
+=== 环境准备
+
+* JMeter
+* JDK
+
+Win
+Linux or Mac
+
+=== reference for this section
+* https://jmeter.apache.org/
+
+== 基于 Docker 的分布式部署
+
+=== 环境准备
+
+* Docker
+* JMeter 镜像 `5.5+`
+* Grafana 镜像
+* InfluxDB `2.x`
+
+=== Step {counter:cnt-step} : Install Docker
+
+
+
+=== Step {counter:cnt-step} : Deploy InfluxDB
+
+==== Pull InfluxDB image In Docker
+
+[source,shellscript]
+----
+
+docker pull influxdb
+
+----
+
+==== Run a container from InfluxDB
+
+[source,shellscript]
+----
+
+docker run -d --name <your container name> -p 8083:8083 -p 8086:8086 influxdb
+
+----
+
+. `docker run -d influxdb` 启动一个 influxdb 的容器
+. `--name jmeter-influx` 容器命名为 *jmeter-influx*
+. `-p 8083:8083 -p 8086:8086` 将 8083 和 8086 端口映射出来
+
+==== Create InfluxDB's database for JMeter
+
+===== Enter container when you created container in previous step
+
+[source,shellscript]
+----
+
+docker exec -it <your container name> bash
+
+----
+
+===== Create bucket in influxDB container
+
+Use UI to create : http://127.0.0.0:8086/
+
+
+
+User command line
+-- todo need find influx command
+
+
+
+=== Step {counter:cnt-step} : Deploy Grafana
+
+Pull Grafana image In Docker
+
+
+[source,shellscript]
+----
+
+docker pull grafana/grafana
+
+----
+
+Run a container from Grafana
+
+[source,shellscript]
+----
+
+docker run -d --name <your container name> -p 3000:3000 grafana/grafana
+
+----
+
+=== reference for this section
+
+* https://www.cnblogs.com/uncleyong/p/11885192.html[JMeter Official WebSite]
+* [Influx v2's command 安装的influx2.x 命令与 1 不同]
+* https://www.cnblogs.com/xiaochao-testing/articles/12697704.html[Docker + JMeter + InfluxDB + Grafana]
+
+== 基于 Kubernetes 的分布式部署
+主要用于 生产
+以 JMeter 的主从架构为基础，在 Kubernetes 集群内创建 JMeter 实例，压测数据收集到 InfluxDB 中，被压目标通过 telegraf 传输到 InfluxDB ，最终通过 Grafana 展示出来。 压测完成后， JMeter ，InfluxDB ， Grafana 的资源销毁即可。
+
+=== 环境准备
+
+* Kubernetes 集群
+* JMeter 主从镜像
+* Grafana 镜像
+* InfluxDB
+
+
