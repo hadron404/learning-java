@@ -29,10 +29,11 @@ Linux or Mac
 
 === 环境准备
 
+* Windows
 * Docker
-* JMeter 镜像 `5.5+`
-* Grafana 镜像
-* InfluxDB `2.x`
+* JMeter 镜像 `5.5.1`
+* Grafana 镜像 `9.6.4`
+* InfluxDB `2.6`
 
 === Step {counter:cnt-step} : Install Docker
 
@@ -40,7 +41,7 @@ Linux or Mac
 
 === Step {counter:cnt-step} : Deploy InfluxDB
 
-==== Pull InfluxDB image In Docker
+==== Pull image
 
 [source,shellscript]
 ----
@@ -49,7 +50,7 @@ docker pull influxdb
 
 ----
 
-==== Run a container from InfluxDB
+==== Run container
 
 [source,shellscript]
 ----
@@ -86,7 +87,7 @@ User command line
 
 === Step {counter:cnt-step} : Deploy Grafana
 
-Pull Grafana image In Docker
+==== Pull image
 
 
 [source,shellscript]
@@ -96,7 +97,7 @@ docker pull grafana/grafana
 
 ----
 
-Run a container from Grafana
+==== Run container
 
 [source,shellscript]
 ----
@@ -105,11 +106,23 @@ docker run -d --name <your container name> -p 3000:3000 grafana/grafana
 
 ----
 
+==== Set configuration
+
+注意：
+在 Grafana 中配置 InfluxDB 数据源时，InfluxDB 有两种方式：一种 InfluxQL，一种 Flux，两种配置在配置连接时会有所区别。
+其次如果是在 docker 中部署的influxDB 和 grafana ，需要了解一下 docker 中的容器互访，在配置 数据源的 Http 连接时，未设置容器互访，访问 localhost（127.0.0.1）时无法访问的。
+
+==== Import dashboard template for influxdb
+https://grafana.com/grafana/dashboards[Grafana 模板仓库]
+
 === reference for this section
 
 * https://www.cnblogs.com/uncleyong/p/11885192.html[JMeter Official WebSite]
 * [Influx v2's command 安装的influx2.x 命令与 1 不同]
 * https://www.cnblogs.com/xiaochao-testing/articles/12697704.html[Docker + JMeter + InfluxDB + Grafana]
+* https://www.cnblogs.com/shenh/p/9714547.html[Docker 容器互访三种方式]
+* https://ivanahuckova.medium.com/setting-up-influxdb-v2-flux-with-influxql-in-grafana-926599a19eeb[Setting up InfluxDB v2 (Flux) with InfluxQL in Grafana]
+* https://docs.influxdata.com/influxdb/v2.0/tools/grafana/#configure-grafana-to-use-flux[Use Grafana with InfluxDB OSS]
 
 == 基于 Kubernetes 的分布式部署
 主要用于 生产
