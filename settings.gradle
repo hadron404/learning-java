@@ -6,4 +6,5 @@ include 'katas'
 include 'learning-enum'
 include 'sample-libraries'
 include 'sample-datetime'
+include 'sample-collection'
 
