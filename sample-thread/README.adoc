@@ -1,0 +1,225 @@
+= Concurrent Programming In Java
+
+== Concepts
+
+* Concurrent and Concurrency
+* Parallel and Parallelism
+* Process and Thread
+* Multi-Thread
+* Thread-Safe
+* Synchronous and Asynchronous
+
+== How to create a thread in Java
+
+[source,java]
+.Thread.java
+----
+
+/**
+* A thread is a thread of execution in a program.
+* The Java Virtual Machine allows an application to have multiple threads of execution running concurrently.
+* Every thread has a priority.
+* ...
+* There are two ways to create a new thread of execution.
+* One is to declare a class to be a subclass of Thread.
+* This subclass should override the run method of class Thread.
+* An instance of the subclass can then be allocated and started.
+* ...
+* The other way to create a thread is to declare a class that implements the Runnable interface.
+* That class then implements the run method.
+* An instance of the class can then be allocated, passed as an argument when creating Thread, and started.
+* */
+public class Thread implements Runnable{
+    // ...more
+    /* What will be run. */
+    private Runnable target;
+    public Thread(){
+        this(null, null, "Thread-" + nextThreadNum(), 0);
+    }
+    public Thread(Runnable target){
+        this(null, target, "Thread-" + nextThreadNum(), 0);
+    }
+    private Thread(ThreadGroup g, Runnable target, String name,
+                   long stackSize, AccessControlContext acc,
+                   boolean inheritThreadLocals) {
+        // ...
+        this.target = target;
+        // ...
+   }
+    @Override
+    public void run() {
+        if (target != null) {
+            target.run();
+        }
+    }
+    // ...more
+}
+
+----
+
+由源码以及注释可以看出，在 Java 里有两种方式进行线程的创建：
+
+* Implementing `java.lang.Runnable` interface(Recommended).
+* Extending the `java.lang.Thread` class.
+
+由此衍生出几种使用方式，将通过 Examples 展示：
+
+. Extending the Thread class and overriding the run method.
+. Implementing Runnable interface and implement the run method.
+. Implementing Callable interface and implement the call method.
+. Using Thread-pool.
+
+
+=== Example: Extending the Thread class
+==== Declaration
+[source,java]
+----
+include::{docdir}/src/main/java/org/example/create/thread/ByExtendsThread.java[lines=2..]
+
+----
+
+==== Execution
+[source,java]
+----
+include::{docdir}/src/test/java/org/example/create/thread/ByExtendsThreadTest.java[lines=2..]
+----
+
+==== Disadvantages
+
+. 不适合处理多个线程有共享数据的情况
+. 类的单继承性具有局限性
+
+=== Example: Implementing Runnable interface
+
+适合执行没有返回值的任务
+
+
+==== Declaration
+
+[source,java]
+----
+include::src/main/java/org/example/create/thread/ByImplementsRunnable.java[lines=2..]
+----
+
+
+==== Execution
+
+[source,java]
+----
+include::{docdir}/src/test/java/org/example/create/thread/ByImplementsRunnableTest.java[lines=2..]
+----
+
+
+==== Advantages
+
+. 没有类的单继承性的局限性
+. 适合处理多个线程中有共享数据的情况
+. 代码看起来更简洁？
+
+=== Example: Implementing Callable interface
+
+适合执行有返回值的任务
+
+==== Declaration
+
+[source,java]
+----
+include::src/main/java/org/example/create/thread/ByImplementsCallable.java[lines=2..]
+----
+
+
+==== Execution
+
+[source,java]
+----
+include::{docdir}/src/test/java/org/example/create/thread/ByImplementsCallableTest.java[lines=2..]
+----
+
+=== Example: Using Thread-Pool
+
+[source,java]
+----
+include::{docdir}/src/test/java/org/example/create/threadpool/ByThreadPoolExecutorTest.java[lines=2..]
+
+----
+
+== Thread Pool in Java
+
+线程池，从字面含义来看，是指管理一组同构工作线程的资源池。
+
+=== Why we need thread-pool?
+
+. 基于池化的思想
+. 可以重用线程，分摊线程创建和销毁的巨大开销
+. 提高响应性，请求达到时，工作线程通常已经存在
+. 最大化利用处理器性能
+. 防止过多线程相互竞争资源使应用程序耗尽内存或失败
+
+=== How to create thread-pool
+
+* By ThreadPoolExecutor
+* By Executors
+
+
+=== Understand Executor Framework
+
+Executor
+
+[source,java]
+.Executor.java
+----
+public class ThreadPoolExecutor{
+
+    public void execute(Runnable command) {
+        if (command == null)
+            throw new NullPointerException();
+        /*
+         * Proceed in 3 steps:
+         *
+         * 1. If fewer than corePoolSize threads are running, try to
+         * start a new thread with the given command as its first
+         * task.  The call to addWorker atomically checks runState and
+         * workerCount, and so prevents false alarms that would add
+         * threads when it shouldn't, by returning false.
+         *
+         * 2. If a task can be successfully queued, then we still need
+         * to double-check whether we should have added a thread
+         * (because existing ones died since last checking) or that
+         * the pool shut down since entry into this method. So we
+         * recheck state and if necessary roll back the enqueuing if
+         * stopped, or start a new thread if there are none.
+         *
+         * 3. If we cannot queue task, then we try to add a new
+         * thread.  If it fails, we know we are shut down or saturated
+         * and so reject the task.
+         */
+        int c = ctl.get();
+        if (workerCountOf(c) < corePoolSize) {
+            if (addWorker(command, true))
+                return;
+            c = ctl.get();
+        }
+        if (isRunning(c) && workQueue.offer(command)) {
+            int recheck = ctl.get();
+            if (! isRunning(recheck) && remove(command))
+                reject(command);
+            else if (workerCountOf(recheck) == 0)
+                addWorker(null, false);
+        }
+        else if (!addWorker(command, false))
+            reject(command);
+    }
+
+}
+----
+
+当提交一个新任务时，线程池的处理流程如下：
+
+1. 判断线程池中核心线程数是否达到 `corePoolSize`，未达到，创建核心线程执行任务
+2. 若已达 `corePoolSize`，则判断 `workQueue` 是否已满，未满，则将新任务添加进 `workQueue`
+3. 若 `wokrQueue` 已满，则判断线程池中线程数是否已达到 `maximumPoolSize` ，若未达到，则创建一个非核心线程执行任务
+4. 若已达 `maximumPoolSize`，则执行线程饱和策略
+
+== How to use CompletableFuture to execute a task
+
+== How to use parallel in Java

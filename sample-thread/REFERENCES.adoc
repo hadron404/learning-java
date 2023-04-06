@@ -1,0 +1,8 @@
+* https://blog.csdn.net/pange1991/article/details/53860651[state and transmit of Thread in Java]
+* https://freecontent.manning.com/concurrency-vs-parallelism/[Concurrency vs Parallelism | Grokking Concurrency]
+
+* https://www.jianshu.com/p/15ea53be1a14[Why alibaba not allow use Executors and Executors Analysis]
+
+* https://blog.csdn.net/weixin_43824267/article/details/112706385[How to create threads in Java]
+
+* https://blog.csdn.net/xhhhx_/article/details/124366229[How to create thread-pool in Java]
