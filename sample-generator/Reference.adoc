@@ -1,0 +1,1 @@
+https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&mid=2247532735&idx=1&sn=a45a0e0ac270a90c444f37876bc23abf&chksm=e92a7db0de5df4a66ad2bba1ceb180fe598bfc6ce47400ce989fd60241f4178660f7e53c28c6&mpshare=1&scene=1&srcid=04131Fz5vlyfq6skcBkPwZEw&sharer_sharetime=1681365178572&sharer_shareid=c404074608d8445d58ac672ab4605374#rd[为Java加入生成器(Generator)特性]
