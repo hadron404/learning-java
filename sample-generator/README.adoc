@@ -1,4 +1,16 @@
 Generator
 
-
 目的： 动态且高性能地创建流。
+
+来看一个生成器的场景：
+
+[source,python]
+----
+def underscore_to_camelcase(s):
+    def camelcase():
+        yield str.lower
+        while True:
+            yield str.capitalize
+    return ''.join(f(sub) for sub, f in zip(s.split('_'), camelcase()))
+----
+
