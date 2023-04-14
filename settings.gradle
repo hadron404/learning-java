@@ -8,4 +8,5 @@ include 'sample-libraries'
 include 'sample-datetime'
 include 'sample-collection'
 include 'sample-thread'
+include 'sample-generator'
 
