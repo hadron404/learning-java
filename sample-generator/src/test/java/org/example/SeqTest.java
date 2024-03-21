@@ -1,11 +1,15 @@
 package org.example;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 class SeqTest {
 
@@ -50,7 +54,22 @@ class SeqTest {
 
 	@Test
 	void test_underscoreToCamel() {
-		SeqTest.underscoreToCamel("");
+		Assertions.assertEquals(
+			"aaBccAmEl",
+			SeqTest.underscoreToCamelByStream("aA_bCc_AM_EL")
+		);
+		Assertions.assertEquals(
+			"isDeleted",
+			SeqTest.underscoreToCamelByStream("is_deleted")
+		);
+		Assertions.assertEquals(
+			"lastSendMsgTime",
+			SeqTest.underscoreToCamelByStream("last_send_msg_time")
+		);
+		Assertions.assertEquals(
+			"No",
+			SeqTest.underscoreToCamelByStream("_no_")
+		);
 	}
 
 
@@ -73,4 +92,18 @@ class SeqTest {
 		// 这里的zip和join都在上文给出了实现
 		return seq.zip(split, Function::apply).join("");
 	}
+
+	/**
+	 * 使用 stream 实现
+	 */
+	static String underscoreToCamelByStream(String str) {
+		return Optional.ofNullable(str)
+			.map(i -> Arrays.asList(i.split("_")))
+			.stream()
+			.skip(1)
+			.flatMap(Collection::stream)
+			.map(s -> s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase())
+			.collect(Collectors.joining(""));
+	}
+
 }
