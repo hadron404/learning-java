@@ -1,0 +1,12 @@
+== 本集指南
+* 特性发展历史以及每个版本中的演进
+* 特性的使用示例
+* 应用场景
+
+== 文献
+
+* https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html[Oracle - API - Java.util.concurrent.CompletableFuture]
+* https://blog.csdn.net/CoderBruis/article/details/103181520[深入解读CompletableFuture 源码与原理]
+* https://www.cnblogs.com/javastack/p/16076933.html[CompletableFuture 的实现原理和使用场景]
+* https://blog.csdn.net/zsx_xiaoxin/article/details/123898171[CompletableFuture 使用大全]
+* https://dzone.com/articles/20-examples-of-using-javas-completablefuture[使用 Java's CompletableFuture 的 20 个示例]
